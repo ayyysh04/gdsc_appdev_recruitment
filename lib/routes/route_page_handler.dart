@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gdsc_appdev/routes/route_constants.dart';
+import 'package:gdsc_appdev/views/homepage/home_page.dart';
+import 'package:gdsc_appdev/views/login_view.dart';
 
 Route generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    // case RouteConstants.SigninScreen:
-    //   return bottomSlidePageBuilder(
-    //     screen: SigninScreen(),
-    //   );
-    // case RouteConstants.homeScreen:
-    //   return bottomSlidePageBuilder(
-    //     screen: homeScreen(),
-    //   );
+    case RouteConstants.SigninScreen:
+      return bottomSlidePageBuilder(
+        screen: LoginScreen(),
+      );
+    case RouteConstants.homeScreen:
+      return bottomSlidePageBuilder(
+        screen: HomeScreen(),
+      );
 
     default:
       return bottomSlidePageBuilder(

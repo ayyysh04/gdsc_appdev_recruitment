@@ -8,7 +8,7 @@ import 'package:gdsc_appdev/services/navigation_service.dart';
 import 'package:gdsc_appdev/services/shared_prefs.dart';
 import 'package:get_it/get_it.dart';
 
-class SigninOrSignupScreenViewModel implements Disposable {
+class SigninScreenViewModel implements Disposable {
   //services access
   final SharedPrefs _sharedPrefs = locator.get();
   final NavigationService _navigationService = locator<NavigationService>();
@@ -23,19 +23,20 @@ class SigninOrSignupScreenViewModel implements Disposable {
   final FocusNode passwordFocusNode = FocusNode();
 
 //validations
-  String? phoneValidation(String? text) {
+  String? emailValidation(String? text) {
     if (text == null) {
-      return "Please enter a phone number";
-    } else if (text.length > 9 || text.length < 9) {
-      return "Please enter a valid phone number";
+      return "Please enter a email address";
+    } else if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+        .hasMatch(text)) {
+      return "Please enter a valid email address";
     }
   }
 
   String? passwordValidation(String? text) {
     if (text == null) {
       return "Please enter a password";
-    } else if (text.length < 9) {
-      return "Please enter a password greater than 9 charaters";
+    } else if (text.length < 8) {
+      return "Please enter a password greater than 7 charaters";
     }
   }
 
@@ -62,11 +63,17 @@ class SigninOrSignupScreenViewModel implements Disposable {
   void signInNavigator() {
     //TODO :write signin logic here (form validation ,etc)
     if (formKey.currentState!.validate()) {
-      //user login successfull
-      _sharedPrefs.isLogin = true;
-      _navigationService.navigatorHandler(
-          method: pageMethod.PushAndRemovePrevious,
-          routeName: RouteConstants.homeScreen);
+      if (phoneController.text == "test@admin.com" &&
+          passwordController.text == "12345678") //user login successfull
+      {
+        print("succesfull login");
+        _sharedPrefs.isLogin = true;
+        _navigationService.navigatorHandler(
+            method: pageMethod.PushAndRemovePrevious,
+            routeName: RouteConstants.homeScreen);
+      } else {
+        print("login failed");
+      }
     }
   }
 

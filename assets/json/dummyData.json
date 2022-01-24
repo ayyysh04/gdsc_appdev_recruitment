@@ -1,0 +1,64 @@
+{
+  "products": [
+    {
+      "ProductID": 1,
+      "Name": "2-pack Relaxed Fit sweatshirts",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F03%2F3b%2F033b0b28e71f15e914f478551b6a2ad90bdae3fb.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_hoodiessweatshirts_sweatshirts%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]",
+      "Price": 1499
+    },
+    {
+      "ProductID": 2,
+      "Name": "Regular Fit Teddy jacket",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Ff6%2F93%2Ff69315cd255b5b62363042d1f6165102eea0ba3f.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "Price": 2299
+    },
+    {
+      "ProductID": 3,
+      "Name": "Water-repellent puffer jacket",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F1e%2F07%2F1e0720b80e5555907fe2b13b3b090a9137db115d.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "Price": 2999
+    },
+    {
+      "ProductID": 4,
+      "Name": "Regular Fit Hoodie",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F78%2F3a%2F783a8b4dafc8f0ec3dfda261468a99f691a1b442.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "Price":2299
+    },
+    {
+      "ProductID": 5,
+      "Name": "Regular Fit Teddy jacket",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F18%2Fbc%2F18bca9bd87d449098c5baa69bd06c3f40cad1e94.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "Price":2299
+    },
+    {
+      "ProductID": 6,
+      "Name": "Relaxed Fit Corduroy shirt",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Ff4%2F8c%2Ff48cc2fb7404893003e568f3288e62cf3458f5af.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "Price":2299
+    },
+    {
+      "ProductID": 7,
+      "Name": "2-pack Regular Fit Joggers",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F93%2F4b%2F934ba4f866af8d1eabbd0902e730255150d584aa.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_trousers_trousers_regular_all%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]",
+      "Price":2299
+    },
+    {
+      "ProductID": 8,
+      "Name": "Satin shirt dress",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fc3%2Fc2%2Fc3c26fdffc20911b19686c5f10dfd2304fd88cde.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "Price":1219
+    },
+    {
+      "ProductID": 9,
+      "Name": "Denim shirt dress",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F53%2Fc2%2F53c2a9d61a235e12a4a9bb8d27b4309f646fccd1.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "Price":1619
+    },
+    {
+      "ProductID": 10,
+      "Name": "Long chiffon dress",
+      "ProductURL": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F1d%2F0f%2F1d0fec3eebd882980596e618997d6ba3fbb74f6e.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "Price":1619
+    }
+  ]
+}
