@@ -21,9 +21,10 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
   }
 
 //Clothes service
-  void getClothesData() {
+  Future<void> getClothesData() async {
     setState(ViewState.Busy);
-    _clothesService.getLoadClothesData();
+    await _clothesService.getLoadClothesData();
+
     setState(ViewState.Idle);
   }
 

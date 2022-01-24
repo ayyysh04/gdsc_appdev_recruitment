@@ -10,8 +10,8 @@ class ClothesService {
   List<ClothesProduct> _clothesData = [];
   List<ClothesProduct> _likedClothesData = [];
   //functions
-  void getLoadClothesData() async {
-    // await Future.delayed(Duration(seconds: 2)); //Reallife delay
+  Future<void> getLoadClothesData() async {
+    await Future.delayed(Duration(seconds: 5)); //Reallife delay
     final dummyJson = await rootBundle.loadString("assets/json/dummyData.json");
     final decodedData = jsonDecode(dummyJson);
     var productsData = decodedData["products"];

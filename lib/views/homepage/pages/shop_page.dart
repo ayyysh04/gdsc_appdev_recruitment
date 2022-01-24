@@ -82,94 +82,99 @@ class ShopPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: ScrollConfiguration(
               behavior: MyBehavior(),
-              child: StaggeredGridView.countBuilder(
-                staggeredTileBuilder: (index) {
-                  return StaggeredTile.count(1, index.isEven ? 1.4 : 1.8);
-                },
-                crossAxisCount: 2,
-                crossAxisSpacing: 15,
-                mainAxisSpacing: 15,
-                itemCount: model.totalProducts,
-                itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      model.productAtIndex(index).ProductURL),
-                                  fit: BoxFit.fill,
+              child:
+                  BaseView<HomeScreenViewModel>(builder: (context, model, _) {
+                return model.state == ViewState.Busy
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : StaggeredGridView.countBuilder(
+                        staggeredTileBuilder: (index) {
+                          return StaggeredTile.count(
+                              1, index.isEven ? 1.4 : 1.8);
+                        },
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
+                        itemCount: model.totalProducts,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        image: DecorationImage(
+                                          image: NetworkImage(model
+                                              .productAtIndex(index)
+                                              .ProductURL),
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                        top: 5,
+                                        right: 5,
+                                        child: MaterialButton(
+                                          minWidth: 50,
+                                          shape: CircleBorder(),
+                                          color: Colors.white,
+                                          elevation: 0,
+                                          padding: EdgeInsets.all(8.0),
+                                          onPressed: () {
+                                            model.likebutton(model
+                                                .productAtIndex(index)
+                                                .ProductID);
+                                          },
+                                          child: model
+                                                  .productAtIndex(index)
+                                                  .isLiked
+                                              ? Icon(
+                                                  Icons.favorite,
+                                                  color: Colors.red,
+                                                )
+                                              : Icon(
+                                                  Icons
+                                                      .favorite_border_outlined,
+                                                ),
+                                        )),
+                                  ],
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              top: 5,
-                              right: 5,
-                              child: BaseView<HomeScreenViewModel>(
-                                  model: model,
-                                  builder: (context, model, _) {
-                                    return model.state == ViewState.Busy
-                                        ? Center(
-                                            child: CircularProgressIndicator(),
-                                          )
-                                        : MaterialButton(
-                                            minWidth: 50,
-                                            shape: CircleBorder(),
-                                            color: Colors.white,
-                                            elevation: 0,
-                                            padding: EdgeInsets.all(8.0),
-                                            onPressed: () {
-                                              model.likebutton(model
-                                                  .productAtIndex(index)
-                                                  .ProductID);
-                                            },
-                                            child: model
-                                                    .productAtIndex(index)
-                                                    .isLiked
-                                                ? Icon(
-                                                    Icons.favorite,
-                                                    color: Colors.red,
-                                                  )
-                                                : Icon(
-                                                    Icons
-                                                        .favorite_border_outlined,
-                                                  ),
-                                          );
-                                  }),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text(
-                          model.productAtIndex(index).Name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5.0, bottom: 5),
-                        child: Text(
-                          "Rs " + model.productAtIndex(index).Price.toString(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  model.productAtIndex(index).Name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 5.0, bottom: 5),
+                                child: Text(
+                                  "Rs " +
+                                      model
+                                          .productAtIndex(index)
+                                          .Price
+                                          .toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+              }),
             ),
           ),
         ),
