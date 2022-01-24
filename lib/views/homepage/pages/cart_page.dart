@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gdsc_appdev/components/scroll_behaviour.dart';
 import 'package:gdsc_appdev/constants/constants.dart';
 import 'package:gdsc_appdev/services/locator.dart';
 import 'package:gdsc_appdev/view_models/home_screen_view_model.dart';
@@ -58,58 +59,62 @@ class CartPage extends StatelessWidget {
                             ? Center(
                                 child: Text("No Product Added"),
                               )
-                            : ListView.separated(
-                                itemCount: model.totalLikedProducts,
-                                itemBuilder: (context, index) {
-                                  return Row(
-                                    children: [
-                                      Container(
-                                        height: 120,
-                                        width: 120,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            image: DecorationImage(
-                                                image: NetworkImage(model
+                            : ScrollConfiguration(
+                                behavior: MyBehavior(),
+                                child: ListView.separated(
+                                  itemCount: model.totalLikedProducts,
+                                  itemBuilder: (context, index) {
+                                    return Row(
+                                      children: [
+                                        Container(
+                                          height: 120,
+                                          width: 120,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              image: DecorationImage(
+                                                  image: NetworkImage(model
+                                                      .getLikedProductAtIndex(
+                                                          index)
+                                                      .ProductURL),
+                                                  fit: BoxFit.fill)),
+                                        ),
+                                        Spacer(),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(model
+                                                .getLikedProductAtIndex(index)
+                                                .Name),
+                                            Text("Rs" +
+                                                model
                                                     .getLikedProductAtIndex(
                                                         index)
-                                                    .ProductURL),
-                                                fit: BoxFit.fill)),
-                                      ),
-                                      Spacer(),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(model
-                                              .getLikedProductAtIndex(index)
-                                              .Name),
-                                          Text("Rs" +
-                                              model
-                                                  .getLikedProductAtIndex(index)
-                                                  .Price
-                                                  .toString()),
-                                        ],
-                                      ),
-                                      Spacer(),
-                                      Column(
-                                        children: [
-                                          GestureDetector(
-                                            child: Icon(Icons.delete,
-                                                color: Colors.red[400]),
-                                            onTap: () {
-                                              model.removeProduct(index);
-                                            },
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  );
-                                },
-                                separatorBuilder:
-                                    (BuildContext context, int index) {
-                                  return Divider();
-                                },
+                                                    .Price
+                                                    .toString()),
+                                          ],
+                                        ),
+                                        Spacer(),
+                                        Column(
+                                          children: [
+                                            GestureDetector(
+                                              child: Icon(Icons.delete,
+                                                  color: Colors.red[400]),
+                                              onTap: () {
+                                                model.removeProduct(index);
+                                              },
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                  separatorBuilder:
+                                      (BuildContext context, int index) {
+                                    return Divider();
+                                  },
+                                ),
                               ),
                       ),
                       SizedBox(

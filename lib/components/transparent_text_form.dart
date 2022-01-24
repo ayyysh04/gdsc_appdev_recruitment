@@ -48,8 +48,7 @@ class TransparentTextForm extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
           contentPadding: EdgeInsets.all(kDefaultPadding * 0.80),
-          hintStyle: TextStyle(
-              color: backgroundColor == null ? Colors.white60 : Colors.black54),
+          hintStyle: TextStyle(color: Colors.black54),
           filled: true,
           fillColor: backgroundColor ??
               Theme.of(context).inputDecorationTheme.fillColor,

@@ -61,7 +61,7 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
 
   toPageIndex(int index) {
     pageController.animateToPage(index,
-        duration: Duration(milliseconds: 600), curve: Curves.easeIn);
+        duration: Duration(milliseconds: 500), curve: Curves.ease);
   }
 
   @override

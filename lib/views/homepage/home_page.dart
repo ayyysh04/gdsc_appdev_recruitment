@@ -1,10 +1,14 @@
+import 'package:badges/badges.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gdsc_appdev/components/notification_icon.dart';
 import 'package:gdsc_appdev/components/scroll_behaviour.dart';
+import 'package:gdsc_appdev/constants/constants.dart';
 import 'package:gdsc_appdev/services/locator.dart';
 import 'package:gdsc_appdev/view_models/home_screen_view_model.dart';
 import 'package:gdsc_appdev/views/base_view/base_view.dart';
-import 'package:gdsc_appdev/views/homepage/components/cart_page.dart';
-import 'package:gdsc_appdev/views/homepage/components/shop_page.dart';
+import 'package:gdsc_appdev/views/homepage/pages/cart_page.dart';
+import 'package:gdsc_appdev/views/homepage/pages/shop_page.dart';
 
 class HomeScreen extends StatelessWidget {
   final HomeScreenViewModel _homeScreenViewModel =
@@ -42,12 +46,32 @@ class HomeScreen extends StatelessWidget {
           currentIndex: model.currentIndex,
           onTap: (value) {
             model.toPageIndex(value);
-            model.setIndex(value);
           },
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag), label: "Cart"),
+              label: "Cart",
+              activeIcon: Badge(
+                badgeColor: kPrimaryColor,
+                badgeContent: Text(
+                  model.totalLikedProducts.toString(),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+                child: Icon(
+                  Icons.shopping_bag,
+                ),
+              ),
+              icon: Badge(
+                badgeColor: Colors.grey,
+                badgeContent: Text(
+                  model.totalLikedProducts.toString(),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+                child: Icon(Icons.shopping_bag),
+              ),
+            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: "Profile",

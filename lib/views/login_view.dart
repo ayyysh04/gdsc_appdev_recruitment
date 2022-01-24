@@ -57,7 +57,9 @@ class LoginScreen extends StatelessWidget {
                   validator: _model.passwordValidation,
                 ),
                 SizedBox(height: kDefaultPadding),
-                PrimaryButton(text: "Sign In", press: _model.signInNavigator),
+                PrimaryButton(
+                    text: "Sign In",
+                    press: () => _model.signInNavigator(context)),
                 SizedBox(height: kDefaultPadding * 1.5),
                 TextButton(
                   child: Text(

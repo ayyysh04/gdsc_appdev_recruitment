@@ -60,7 +60,7 @@ class SigninScreenViewModel implements Disposable {
     _navigationService.navigatorHandler(method: method, routeName: routeName);
   }
 
-  void signInNavigator() {
+  void signInNavigator(BuildContext context) {
     //TODO :write signin logic here (form validation ,etc)
     if (formKey.currentState!.validate()) {
       if (phoneController.text == "test@admin.com" &&
@@ -72,9 +72,12 @@ class SigninScreenViewModel implements Disposable {
             method: pageMethod.PushAndRemovePrevious,
             routeName: RouteConstants.homeScreen);
       } else {
-        print("login failed");
+        ScaffoldMessenger.of(context).clearSnackBars();
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Wrong credentials")));
       }
     }
+    passwordController.clear();
   }
 
   void forgotPassword() {
