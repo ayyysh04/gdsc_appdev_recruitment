@@ -6,8 +6,11 @@ import 'package:provider/provider.dart';
 class BaseView<T extends BaseModel> extends StatefulWidget {
   final Widget Function(BuildContext context, T model, Widget? child) builder;
   final Function(T model)? onModelReady;
-  T? model; //pass the already built chnageNotifier if you dont want to create a new one
-  BaseView({required this.builder, this.onModelReady, this.model});
+  final T?
+      model; //pass the already built chnageNotifier if you dont want to create a new one
+  const BaseView(
+      {Key? key, required this.builder, this.onModelReady, this.model})
+      : super(key: key);
 
   @override
   _BaseViewState<T> createState() => _BaseViewState<T>();
@@ -18,7 +21,6 @@ class _BaseViewState<T extends BaseModel> extends State<BaseView<T>> {
   @override
   void initState() {
     model = widget.model ?? locator<T>();
-    print(widget.onModelReady == null);
     if (widget.onModelReady != null) {
       widget.onModelReady!(widget.model!);
     }

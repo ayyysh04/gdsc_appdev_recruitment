@@ -86,7 +86,7 @@ class ShopPage extends StatelessWidget {
               behavior: MyBehavior(),
               child:
                   BaseView<HomeScreenViewModel>(builder: (context, model, _) {
-                return model.state == ViewState.Busy
+                return model.state == ViewState.busy
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
@@ -113,7 +113,7 @@ class ShopPage extends StatelessWidget {
                                       child: Hero(
                                         tag: model
                                             .productAtIndex(index)
-                                            .ProductID,
+                                            .productID,
                                         child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -121,7 +121,7 @@ class ShopPage extends StatelessWidget {
                                             image: DecorationImage(
                                               image: NetworkImage(model
                                                   .productAtIndex(index)
-                                                  .ProductURL),
+                                                  .productURL),
                                               fit: BoxFit.fill,
                                             ),
                                           ),
@@ -135,7 +135,7 @@ class ShopPage extends StatelessWidget {
                                           onPressed: () {
                                             model.likebutton(model
                                                 .productAtIndex(index)
-                                                .ProductID);
+                                                .productID);
                                           },
                                           isLiked: model
                                               .productAtIndex(index)
@@ -147,7 +147,7 @@ class ShopPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: Text(
-                                  model.productAtIndex(index).Name,
+                                  model.productAtIndex(index).name,
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText2!
@@ -161,7 +161,7 @@ class ShopPage extends StatelessWidget {
                                   "Rs " +
                                       model
                                           .productAtIndex(index)
-                                          .Price
+                                          .price
                                           .toString(),
                                   style: Theme.of(context)
                                       .textTheme

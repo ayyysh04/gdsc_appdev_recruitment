@@ -1,49 +1,47 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
 class ClothesProduct {
-  final int ProductID;
-  final String Name;
-  final String ProductURL;
-  final int Price;
+  final int productID;
+  final String name;
+  final String productURL;
+  final int price;
   bool isLiked = false;
   ClothesProduct({
-    required this.ProductID,
-    required this.Name,
-    required this.ProductURL,
-    required this.Price,
+    required this.productID,
+    required this.name,
+    required this.productURL,
+    required this.price,
   });
 
   ClothesProduct copyWith({
-    int? ProductID,
-    String? Name,
-    String? ProductURL,
-    int? Price,
+    int? productID,
+    String? name,
+    String? productURL,
+    int? price,
   }) {
     return ClothesProduct(
-      ProductID: ProductID ?? this.ProductID,
-      Name: Name ?? this.Name,
-      ProductURL: ProductURL ?? this.ProductURL,
-      Price: Price ?? this.Price,
+      productID: productID ?? this.productID,
+      name: name ?? this.name,
+      productURL: productURL ?? this.productURL,
+      price: price ?? this.price,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'ProductID': ProductID,
-      'Name': Name,
-      'ProductURL': ProductURL,
-      'Price': Price,
+      'ProductID': productID,
+      'Name': name,
+      'ProductURL': productURL,
+      'Price': price,
     };
   }
 
   factory ClothesProduct.fromMap(Map<String, dynamic> map) {
     return ClothesProduct(
-      ProductID: map['ProductID']?.toInt() ?? 0,
-      Name: map['Name'] ?? '',
-      ProductURL: map['ProductURL'] ?? '',
-      Price: map['Price']?.toInt() ?? 0,
+      productID: map['ProductID']?.toInt() ?? 0,
+      name: map['Name'] ?? '',
+      productURL: map['ProductURL'] ?? '',
+      price: map['Price']?.toInt() ?? 0,
     );
   }
 
@@ -54,7 +52,7 @@ class ClothesProduct {
 
   @override
   String toString() {
-    return 'Product(ProductID: $ProductID, Name: $Name, ProductURL: $ProductURL, Price: $Price)';
+    return 'Product(ProductID: $productID, Name: $name, ProductURL: $productURL, Price: $price)';
   }
 
   @override
@@ -62,17 +60,17 @@ class ClothesProduct {
     if (identical(this, other)) return true;
 
     return other is ClothesProduct &&
-        other.ProductID == ProductID &&
-        other.Name == Name &&
-        other.ProductURL == ProductURL &&
-        other.Price == Price;
+        other.productID == productID &&
+        other.name == name &&
+        other.productURL == productURL &&
+        other.price == price;
   }
 
   @override
   int get hashCode {
-    return ProductID.hashCode ^
-        Name.hashCode ^
-        ProductURL.hashCode ^
-        Price.hashCode;
+    return productID.hashCode ^
+        name.hashCode ^
+        productURL.hashCode ^
+        price.hashCode;
   }
 }

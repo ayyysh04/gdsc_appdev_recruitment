@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gdsc_appdev/enums/pageNavigatorMethod.dart';
+import 'package:gdsc_appdev/enums/page_navigator_method.dart';
 
 class NavigationService {
-  final GlobalKey<NavigatorState> navigatorKey =
-      new GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   dynamic _navigatePushTo(String routeName, {dynamic arguments}) async {
     return await navigatorKey.currentState!
@@ -38,16 +37,16 @@ class NavigationService {
       required String routeName,
       dynamic arguments}) {
     switch (method) {
-      case pageMethod.Push:
+      case pageMethod.push:
         return _navigatePushTo(routeName, arguments: arguments);
 
-      case pageMethod.PopAndPush:
+      case pageMethod.popAndPush:
         return _navigatePopAndPushTo(routeName, arguments: arguments);
 
-      case pageMethod.Replacement:
+      case pageMethod.replacement:
         return _navigateReplaceTo(routeName, arguments: arguments);
 
-      case pageMethod.PushAndRemovePrevious:
+      case pageMethod.pushAndRemovePrevious:
         return _navigatePushAndRemovePrevious(routeName, arguments: arguments);
 
       default:

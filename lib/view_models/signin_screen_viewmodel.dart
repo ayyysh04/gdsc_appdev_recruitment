@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gdsc_appdev/enums/pageNavigatorMethod.dart';
+import 'package:gdsc_appdev/enums/page_navigator_method.dart';
 import 'package:gdsc_appdev/routes/route_constants.dart';
 import 'package:gdsc_appdev/services/locator.dart';
 import 'package:gdsc_appdev/services/navigation_service.dart';
@@ -61,15 +61,14 @@ class SigninScreenViewModel implements Disposable {
   }
 
   void signInNavigator(BuildContext context) {
-    //TODO :write signin logic here (form validation ,etc)
     if (formKey.currentState!.validate()) {
       if (phoneController.text == "test@admin.com" &&
           passwordController.text == "12345678") //user login successfull
       {
-        print("succesfull login");
+        debugPrint("succesfull login");
         _sharedPrefs.isLogin = true;
         _navigationService.navigatorHandler(
-            method: pageMethod.PushAndRemovePrevious,
+            method: pageMethod.pushAndRemovePrevious,
             routeName: RouteConstants.homeScreen);
       } else {
         ScaffoldMessenger.of(context).clearSnackBars();

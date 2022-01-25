@@ -9,7 +9,7 @@ class ClothesService {
   //all Clothes data
   List<ClothesProduct> _clothesData = [];
   List<ClothesProduct> _likedClothesData = [];
-  List<ClothesProduct> _CartClothesData = [];
+  List<ClothesProduct> _cartClothesData = [];
   //functions
   Future<void> getLoadClothesData() async {
     await Future.delayed(Duration(seconds: 5)); //Reallife delay
@@ -27,7 +27,7 @@ class ClothesService {
 
   int productIndexAtProductID(int productID) {
     int productIndex =
-        _clothesData.indexWhere((element) => element.ProductID == productID);
+        _clothesData.indexWhere((element) => element.productID == productID);
     return productIndex;
   }
 
@@ -40,13 +40,14 @@ class ClothesService {
 
   void likebutton(int productID) {
     int productIndex =
-        _clothesData.indexWhere((element) => element.ProductID == productID);
+        _clothesData.indexWhere((element) => element.productID == productID);
     _clothesData[productIndex].isLiked = !_clothesData[productIndex].isLiked;
-    if (_clothesData[productIndex].isLiked == false)
+    if (_clothesData[productIndex].isLiked == false) {
       _likedClothesData
-          .removeWhere((element) => element.ProductID == productID);
-    else
+          .removeWhere((element) => element.productID == productID);
+    } else {
       _likedClothesData.add(_clothesData[productIndex]);
+    }
   }
 
   ClothesProduct getLikedProductAtIndex(int index) {
@@ -54,42 +55,43 @@ class ClothesService {
   }
 
   void removeLikedProduct(int index) {
-    likebutton(_likedClothesData[index].ProductID);
+    likebutton(_likedClothesData[index].productID);
   }
 
   //cart product functionality
   int totalCartProducts() {
-    return _CartClothesData.length;
+    return _cartClothesData.length;
   }
 
   void addToCartButton(int productID) {
     int productIndex =
-        _clothesData.indexWhere((element) => element.ProductID == productID);
-    if (_CartClothesData.contains(_clothesData[productIndex]))
-      _CartClothesData.removeWhere((element) => element.ProductID == productID);
-    else
-      _CartClothesData.add(_clothesData[productIndex]);
+        _clothesData.indexWhere((element) => element.productID == productID);
+    if (_cartClothesData.contains(_clothesData[productIndex])) {
+      _cartClothesData.removeWhere((element) => element.productID == productID);
+    } else {
+      _cartClothesData.add(_clothesData[productIndex]);
+    }
   }
 
-  bool CheckInCart(int productID) {
+  bool checkInCart(int productID) {
     int productIndex =
-        _clothesData.indexWhere((element) => element.ProductID == productID);
-    return _CartClothesData.contains(_clothesData[productIndex]);
+        _clothesData.indexWhere((element) => element.productID == productID);
+    return _cartClothesData.contains(_clothesData[productIndex]);
   }
 
   ClothesProduct getCartProductAtIndex(int index) {
-    return _CartClothesData[index];
+    return _cartClothesData[index];
   }
 
   void removeFromCart(int index) {
-    addToCartButton(_CartClothesData[index].ProductID);
+    addToCartButton(_cartClothesData[index].productID);
   }
 
 //cost
   int subtotal() {
-    return _CartClothesData.fold<int>(
+    return _cartClothesData.fold<int>(
         0,
         (previousValue, product) =>
-            (product.isLiked ? product.Price : 0) + previousValue);
+            (product.isLiked ? product.price : 0) + previousValue);
   }
 }

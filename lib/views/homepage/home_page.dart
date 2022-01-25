@@ -2,7 +2,6 @@ import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gdsc_appdev/components/appbar.dart';
-import 'package:gdsc_appdev/components/notification_icon.dart';
 import 'package:gdsc_appdev/components/scroll_behaviour.dart';
 import 'package:gdsc_appdev/constants/constants.dart';
 import 'package:gdsc_appdev/services/locator.dart';
@@ -95,7 +94,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> pageView = [
+  final List<Widget> pageView = [
     ShopPage(),
     CartPage(),
     FavPage(),

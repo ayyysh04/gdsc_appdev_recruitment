@@ -9,11 +9,13 @@ class BaseViewNonReactive<T extends BaseModel> extends StatefulWidget {
   final bool disposeViewModel;
   final Function(T)? onModelReady;
 
-  BaseViewNonReactive(
-      {required this.builder,
+  const BaseViewNonReactive(
+      {Key? key,
+      required this.builder,
       this.onModelReady,
       this.staticChild,
-      this.disposeViewModel = true});
+      this.disposeViewModel = true})
+      : super(key: key);
 
   @override
   _BaseViewNonReactiveState<T> createState() => _BaseViewNonReactiveState<T>();

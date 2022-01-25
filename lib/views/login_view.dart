@@ -1,11 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gdsc_appdev/enums/pageNavigatorMethod.dart';
 import 'package:gdsc_appdev/components/primary_button.dart';
 import 'package:gdsc_appdev/components/transparent_text_form.dart';
 import 'package:gdsc_appdev/constants/constants.dart';
-import 'package:gdsc_appdev/routes/route_constants.dart';
 import 'package:gdsc_appdev/services/locator.dart';
 import 'package:gdsc_appdev/view_models/signin_screen_viewmodel.dart';
 
@@ -64,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                 TextButton(
                   child: Text(
                     "Forget Password?",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
                   onPressed: _model.forgotPassword,
                 ),

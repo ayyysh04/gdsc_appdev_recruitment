@@ -3,13 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:gdsc_appdev/components/likebutton.dart';
 import 'package:gdsc_appdev/services/locator.dart';
 import 'package:gdsc_appdev/view_models/home_screen_view_model.dart';
-import 'package:gdsc_appdev/view_models/product_screen_view_model.dart';
 import 'package:gdsc_appdev/views/base_view/base_view.dart';
 
 class ProductView extends StatelessWidget {
   final model = locator.get<HomeScreenViewModel>();
   ProductView({Key? key, required this.index}) : super(key: key);
-  int index;
+  final int index;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -28,14 +27,14 @@ class ProductView extends StatelessWidget {
             left: 0,
             right: 0,
             child: Hero(
-              tag: model.productAtIndex(index).ProductID,
+              tag: model.productAtIndex(index).productID,
               child: Container(
                 height: 700,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(model.productAtIndex(index).ProductURL),
+                    image: NetworkImage(model.productAtIndex(index).productURL),
                   ),
                 ),
               ),
@@ -55,7 +54,7 @@ class ProductView extends StatelessWidget {
                       return LikeButton(
                           onPressed: () {
                             model.likebutton(
-                                model.productAtIndex(index).ProductID);
+                                model.productAtIndex(index).productID);
                           },
                           isLiked: model.productAtIndex(index).isLiked);
                     })
@@ -70,7 +69,7 @@ class ProductView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Sub total \nRs ${model.productAtIndex(index).Price}",
+                    "Sub total \nRs ${model.productAtIndex(index).price}",
                     style: Theme.of(context)
                         .textTheme
                         .headline5!
@@ -82,7 +81,7 @@ class ProductView extends StatelessWidget {
                         return TextButton(
                           onPressed: () {
                             model.addToCartbutton(
-                                model.productAtIndex(index).ProductID);
+                                model.productAtIndex(index).productID);
                           },
                           child: Container(
                             height: 60,
@@ -94,8 +93,8 @@ class ProductView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Text(
-                              model.CheckInCart(
-                                      model.productAtIndex(index).ProductID)
+                              model.checkInCart(
+                                      model.productAtIndex(index).productID)
                                   ? "Remove from Cart"
                                   : "Add to Cart",
                               style: Theme.of(context)

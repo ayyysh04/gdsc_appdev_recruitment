@@ -9,7 +9,7 @@ import 'package:gdsc_appdev/services/locator.dart';
 import 'package:gdsc_appdev/services/navigation_service.dart';
 import 'package:gdsc_appdev/view_models/base_view_model/index_tracking_model.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gdsc_appdev/enums/pageNavigatorMethod.dart';
+import 'package:gdsc_appdev/enums/page_navigator_method.dart';
 
 class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
   //services access
@@ -24,10 +24,10 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
 
 //Clothes service
   Future<void> getClothesData() async {
-    setState(ViewState.Busy);
+    setState(ViewState.busy);
     await _clothesService.getLoadClothesData();
 
-    setState(ViewState.Idle);
+    setState(ViewState.idle);
   }
 
   ClothesProduct productAtIndex(int index) =>
@@ -40,7 +40,7 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
 //like functionlity
   void likebutton(int productID) {
     _clothesService.likebutton(productID);
-    setState(ViewState.Idle);
+    setState(ViewState.idle);
   }
 
   int get totalLikedProducts => _clothesService.totalLikedProducts();
@@ -51,17 +51,17 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
 
   void removeLike(int index) {
     _clothesService.removeLikedProduct(index);
-    setState(ViewState.Idle);
+    setState(ViewState.idle);
   }
 
 //cart functionlity
   void addToCartbutton(int productID) {
     _clothesService.addToCartButton(productID);
-    setState(ViewState.Idle);
+    setState(ViewState.idle);
   }
 
-  bool CheckInCart(int productID) {
-    return _clothesService.CheckInCart(productID);
+  bool checkInCart(int productID) {
+    return _clothesService.checkInCart(productID);
   }
 
   int get totalCartProducts => _clothesService.totalCartProducts();
@@ -72,7 +72,7 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
 
   void removeFromCart(int index) {
     _clothesService.removeFromCart(index);
-    setState(ViewState.Idle);
+    setState(ViewState.idle);
   }
 
 //cost
@@ -94,9 +94,8 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
 
 //navigation function
   void goToProductScreen(int index) {
-    print(index);
     _navigationService.navigatorHandler(
-        method: pageMethod.Push,
+        method: pageMethod.push,
         routeName: RouteConstants.productScreen,
         arguments: {
           'index': index,

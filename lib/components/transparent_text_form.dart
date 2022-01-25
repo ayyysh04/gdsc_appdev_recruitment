@@ -11,7 +11,7 @@ class TransparentTextForm extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final bool obscureText;
-  TransparentTextForm({
+  const TransparentTextForm({
     Key? key,
     this.controller,
     required this.text,

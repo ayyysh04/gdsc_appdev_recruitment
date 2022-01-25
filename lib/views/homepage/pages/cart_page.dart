@@ -68,13 +68,13 @@ class CartPage extends StatelessWidget {
                                       onPressed: () => model.goToProductScreen(
                                           model.productIndexAtProductID(model
                                               .getCartProductAtIndex(index)
-                                              .ProductID)),
+                                              .productID)),
                                       child: Row(
                                         children: [
                                           Hero(
                                             tag: model
                                                 .productAtIndex(index)
-                                                .ProductID,
+                                                .productID,
                                             child: Container(
                                               height: 120,
                                               width: 120,
@@ -85,7 +85,7 @@ class CartPage extends StatelessWidget {
                                                       image: NetworkImage(model
                                                           .getCartProductAtIndex(
                                                               index)
-                                                          .ProductURL),
+                                                          .productURL),
                                                       fit: BoxFit.fill)),
                                             ),
                                           ),
@@ -96,12 +96,12 @@ class CartPage extends StatelessWidget {
                                             children: [
                                               Text(model
                                                   .getCartProductAtIndex(index)
-                                                  .Name),
+                                                  .name),
                                               Text("Rs" +
                                                   model
                                                       .getCartProductAtIndex(
                                                           index)
-                                                      .Price
+                                                      .price
                                                       .toString()),
                                             ],
                                           ),

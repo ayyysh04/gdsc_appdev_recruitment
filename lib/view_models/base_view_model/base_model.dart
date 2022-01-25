@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gdsc_appdev/enums/viewstate.dart';
 
 class BaseModel extends ChangeNotifier {
-  ViewState _state = ViewState.Idle;
+  ViewState _state = ViewState.idle;
 
   ViewState get state => _state;
 

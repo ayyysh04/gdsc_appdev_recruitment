@@ -70,13 +70,13 @@ class FavPage extends StatelessWidget {
                                                 .productIndexAtProductID(model
                                                     .getLikedProductAtIndex(
                                                         index)
-                                                    .ProductID)),
+                                                    .productID)),
                                         child: Row(
                                           children: [
                                             Hero(
                                               tag: model
                                                   .productAtIndex(index)
-                                                  .ProductID,
+                                                  .productID,
                                               child: Container(
                                                 height: 120,
                                                 width: 120,
@@ -88,7 +88,7 @@ class FavPage extends StatelessWidget {
                                                         image: NetworkImage(model
                                                             .getLikedProductAtIndex(
                                                                 index)
-                                                            .ProductURL),
+                                                            .productURL),
                                                         fit: BoxFit.fill)),
                                               ),
                                             ),
@@ -100,12 +100,12 @@ class FavPage extends StatelessWidget {
                                                 Text(model
                                                     .getLikedProductAtIndex(
                                                         index)
-                                                    .Name),
+                                                    .name),
                                                 Text("Rs" +
                                                     model
                                                         .getLikedProductAtIndex(
                                                             index)
-                                                        .Price
+                                                        .price
                                                         .toString()),
                                               ],
                                             ),
