@@ -47,7 +47,7 @@ class CartPage extends StatelessWidget {
         Expanded(
           flex: 9,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
             child: BaseView<HomeScreenViewModel>(
                 model: model,
                 builder: (context, model, _) {
@@ -76,8 +76,8 @@ class CartPage extends StatelessWidget {
                                                 .productAtIndex(index)
                                                 .productID,
                                             child: Container(
-                                              height: 120,
-                                              width: 120,
+                                              height: 100,
+                                              width: 100,
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(20),
@@ -200,9 +200,6 @@ class CartPage extends StatelessWidget {
                           },
                           child: Container(
                             height: 60,
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 20),
                             decoration: BoxDecoration(
                               color: Colors.orange[600],
                               borderRadius: BorderRadius.circular(20),
