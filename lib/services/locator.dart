@@ -17,7 +17,7 @@ void setupLocator() {
   locator.registerLazySingleton(() => ClothesService());
 
 //viewModels (Factory)
+  locator.registerFactory(() => SigninScreenViewModel());
   locator.registerFactory(() => WelcomeScreenViewModel());
   locator.registerLazySingleton(() => HomeScreenViewModel());
-  locator.registerFactory(() => SigninScreenViewModel());
 }

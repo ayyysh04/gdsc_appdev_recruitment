@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gdsc_appdev/routes/route_constants.dart';
 import 'package:gdsc_appdev/views/homepage/home_page.dart';
 import 'package:gdsc_appdev/views/login_view.dart';
+import 'package:gdsc_appdev/views/product_view.dart';
 
 Route generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case RouteConstants.SigninScreen:
+    case RouteConstants.signinScreen:
       return bottomSlidePageBuilder(
         screen: LoginScreen(),
       );
@@ -13,6 +14,13 @@ Route generateRoute(RouteSettings settings) {
       return bottomSlidePageBuilder(
         screen: HomeScreen(),
       );
+    case RouteConstants.productScreen:
+      Map arguments = settings.arguments as Map;
+      return MaterialPageRoute(builder: (context) {
+        return ProductView(
+          index: arguments['index'],
+        );
+      });
 
     default:
       return bottomSlidePageBuilder(

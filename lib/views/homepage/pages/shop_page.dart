@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 import 'package:gdsc_appdev/components/filled_outline_button.dart';
+import 'package:gdsc_appdev/components/likebutton.dart';
 import 'package:gdsc_appdev/components/scroll_behaviour.dart';
 import 'package:gdsc_appdev/constants/constants.dart';
 import 'package:gdsc_appdev/enums/viewstate.dart';
@@ -105,42 +107,39 @@ class ShopPage extends StatelessWidget {
                                 child: Stack(
                                   alignment: Alignment.center,
                                   children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        image: DecorationImage(
-                                          image: NetworkImage(model
-                                              .productAtIndex(index)
-                                              .ProductURL),
-                                          fit: BoxFit.fill,
+                                    GestureDetector(
+                                      onTap: () =>
+                                          model.goToProductScreen(index),
+                                      child: Hero(
+                                        tag: model
+                                            .productAtIndex(index)
+                                            .ProductID,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            image: DecorationImage(
+                                              image: NetworkImage(model
+                                                  .productAtIndex(index)
+                                                  .ProductURL),
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
                                     Positioned(
                                         top: 5,
                                         right: 5,
-                                        child: MaterialButton(
-                                          minWidth: 50,
-                                          shape: CircleBorder(),
-                                          color: Colors.white,
-                                          elevation: 0,
-                                          padding: EdgeInsets.all(8.0),
+                                        child: LikeButton(
                                           onPressed: () {
                                             model.likebutton(model
                                                 .productAtIndex(index)
                                                 .ProductID);
                                           },
-                                          child: model
-                                                  .productAtIndex(index)
-                                                  .isLiked
-                                              ? Icon(
-                                                  Icons.favorite,
-                                                  color: Colors.red,
-                                                )
-                                              : Icon(
-                                                  Icons
-                                                      .favorite_border_outlined,
-                                                ),
+                                          isLiked: model
+                                              .productAtIndex(index)
+                                              .isLiked,
                                         )),
                                   ],
                                 ),

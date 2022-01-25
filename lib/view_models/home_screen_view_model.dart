@@ -3,11 +3,13 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gdsc_appdev/enums/viewstate.dart';
 import 'package:gdsc_appdev/models/clothes_model.dart';
+import 'package:gdsc_appdev/routes/route_constants.dart';
 import 'package:gdsc_appdev/services/clothes_service.dart';
 import 'package:gdsc_appdev/services/locator.dart';
 import 'package:gdsc_appdev/services/navigation_service.dart';
 import 'package:gdsc_appdev/view_models/base_view_model/index_tracking_model.dart';
 import 'package:get_it/get_it.dart';
+import 'package:gdsc_appdev/enums/pageNavigatorMethod.dart';
 
 class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
   //services access
@@ -31,6 +33,9 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
   ClothesProduct productAtIndex(int index) =>
       _clothesService.getProductAtIndex(index);
 
+  int productIndexAtProductID(int productID) =>
+      _clothesService.productIndexAtProductID(productID);
+
   int get totalProducts => _clothesService.totalProducts;
 //like functionlity
   void likebutton(int productID) {
@@ -44,15 +49,37 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
     return _clothesService.getLikedProductAtIndex(index);
   }
 
-  void removeProduct(int index) {
-    _clothesService.removeProduct(index);
+  void removeLike(int index) {
+    _clothesService.removeLikedProduct(index);
     setState(ViewState.Idle);
   }
 
+//cart functionlity
+  void addToCartbutton(int productID) {
+    _clothesService.addToCartButton(productID);
+    setState(ViewState.Idle);
+  }
+
+  bool CheckInCart(int productID) {
+    return _clothesService.CheckInCart(productID);
+  }
+
+  int get totalCartProducts => _clothesService.totalCartProducts();
+
+  ClothesProduct getCartProductAtIndex(int index) {
+    return _clothesService.getCartProductAtIndex(index);
+  }
+
+  void removeFromCart(int index) {
+    _clothesService.removeFromCart(index);
+    setState(ViewState.Idle);
+  }
+
+//cost
   int subtotal() {
     return _clothesService.subtotal();
   }
-//navigation functions
+//pageview functions
 
   PageController pageController = PageController(initialPage: 0);
 
@@ -63,6 +90,17 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
   toPageIndex(int index) {
     pageController.animateToPage(index,
         duration: Duration(milliseconds: 500), curve: Curves.ease);
+  }
+
+//navigation function
+  void goToProductScreen(int index) {
+    print(index);
+    _navigationService.navigatorHandler(
+        method: pageMethod.Push,
+        routeName: RouteConstants.productScreen,
+        arguments: {
+          'index': index,
+        });
   }
 
   @override

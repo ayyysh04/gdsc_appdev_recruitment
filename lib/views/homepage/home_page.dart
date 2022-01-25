@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gdsc_appdev/components/appbar.dart';
 import 'package:gdsc_appdev/components/notification_icon.dart';
 import 'package:gdsc_appdev/components/scroll_behaviour.dart';
 import 'package:gdsc_appdev/constants/constants.dart';
@@ -8,6 +9,7 @@ import 'package:gdsc_appdev/services/locator.dart';
 import 'package:gdsc_appdev/view_models/home_screen_view_model.dart';
 import 'package:gdsc_appdev/views/base_view/base_view.dart';
 import 'package:gdsc_appdev/views/homepage/pages/cart_page.dart';
+import 'package:gdsc_appdev/views/homepage/pages/fav_page.dart';
 import 'package:gdsc_appdev/views/homepage/pages/shop_page.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,15 +31,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  AppBar buildAppBar() {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Text(
-        "ShopSella",
-      ),
-    );
-  }
-
   Widget buildBottomNavigationBar() {
     return BaseView<HomeScreenViewModel>(
       builder: (context, model, _) {
@@ -54,7 +47,7 @@ class HomeScreen extends StatelessWidget {
               activeIcon: Badge(
                 badgeColor: kPrimaryColor,
                 badgeContent: Text(
-                  model.totalLikedProducts.toString(),
+                  model.totalCartProducts.toString(),
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
@@ -65,7 +58,7 @@ class HomeScreen extends StatelessWidget {
               icon: Badge(
                 badgeColor: Colors.grey,
                 badgeContent: Text(
-                  model.totalLikedProducts.toString(),
+                  model.totalCartProducts.toString(),
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
@@ -73,8 +66,27 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
+              label: "Liked product",
+              activeIcon: Badge(
+                badgeColor: kPrimaryColor,
+                badgeContent: Text(
+                  model.totalLikedProducts.toString(),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+                child: Icon(
+                  Icons.favorite,
+                ),
+              ),
+              icon: Badge(
+                badgeColor: Colors.grey,
+                badgeContent: Text(
+                  model.totalLikedProducts.toString(),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+                child: Icon(Icons.favorite_border),
+              ),
             ),
           ],
         );
@@ -86,6 +98,6 @@ class HomeScreen extends StatelessWidget {
   List<Widget> pageView = [
     ShopPage(),
     CartPage(),
-    Container(),
+    FavPage(),
   ];
 }

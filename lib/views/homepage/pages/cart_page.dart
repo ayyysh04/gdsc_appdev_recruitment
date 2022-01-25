@@ -35,7 +35,7 @@ class CartPage extends StatelessWidget {
                       model: model,
                       builder: (context, model, _) {
                         return Text(
-                          "${model.totalLikedProducts} items",
+                          "${model.totalCartProducts} items",
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         );
                       })
@@ -55,59 +55,70 @@ class CartPage extends StatelessWidget {
                     children: [
                       Expanded(
                         flex: 9,
-                        child: model.totalLikedProducts == 0
+                        child: model.totalCartProducts == 0
                             ? Center(
                                 child: Text("No Product Added"),
                               )
                             : ScrollConfiguration(
                                 behavior: MyBehavior(),
                                 child: ListView.separated(
-                                  itemCount: model.totalLikedProducts,
+                                  itemCount: model.totalCartProducts,
                                   itemBuilder: (context, index) {
-                                    return Row(
-                                      children: [
-                                        Container(
-                                          height: 120,
-                                          width: 120,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              image: DecorationImage(
-                                                  image: NetworkImage(model
-                                                      .getLikedProductAtIndex(
+                                    return MaterialButton(
+                                      onPressed: () => model.goToProductScreen(
+                                          model.productIndexAtProductID(model
+                                              .getCartProductAtIndex(index)
+                                              .ProductID)),
+                                      child: Row(
+                                        children: [
+                                          Hero(
+                                            tag: model
+                                                .productAtIndex(index)
+                                                .ProductID,
+                                            child: Container(
+                                              height: 120,
+                                              width: 120,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(model
+                                                          .getCartProductAtIndex(
+                                                              index)
+                                                          .ProductURL),
+                                                      fit: BoxFit.fill)),
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(model
+                                                  .getCartProductAtIndex(index)
+                                                  .Name),
+                                              Text("Rs" +
+                                                  model
+                                                      .getCartProductAtIndex(
                                                           index)
-                                                      .ProductURL),
-                                                  fit: BoxFit.fill)),
-                                        ),
-                                        Spacer(),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(model
-                                                .getLikedProductAtIndex(index)
-                                                .Name),
-                                            Text("Rs" +
-                                                model
-                                                    .getLikedProductAtIndex(
-                                                        index)
-                                                    .Price
-                                                    .toString()),
-                                          ],
-                                        ),
-                                        Spacer(),
-                                        Column(
-                                          children: [
-                                            GestureDetector(
-                                              child: Icon(Icons.delete,
-                                                  color: Colors.red[400]),
-                                              onTap: () {
-                                                model.removeProduct(index);
-                                              },
-                                            )
-                                          ],
-                                        )
-                                      ],
+                                                      .Price
+                                                      .toString()),
+                                            ],
+                                          ),
+                                          Spacer(),
+                                          Column(
+                                            children: [
+                                              GestureDetector(
+                                                child: Icon(Icons.delete,
+                                                    color: Colors.red[400]),
+                                                onTap: () {
+                                                  model.removeFromCart(index);
+                                                },
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     );
                                   },
                                   separatorBuilder:
