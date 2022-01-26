@@ -90,8 +90,6 @@ class ClothesService {
 //cost
   int subtotal() {
     return _cartClothesData.fold<int>(
-        0,
-        (previousValue, product) =>
-            (product.isLiked ? product.price : 0) + previousValue);
+        0, (previousValue, product) => product.price + previousValue);
   }
 }
