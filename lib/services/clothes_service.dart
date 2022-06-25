@@ -4,12 +4,16 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:gdsc_appdev/models/clothes_model.dart';
+import 'package:gdsc_appdev/services/hive.dart';
+import 'package:gdsc_appdev/services/locator.dart';
 
 class ClothesService {
+  //hive service
+  HiveUtil _hiveUtil = locator.get();
   //all Clothes data
   List<ClothesProduct> _clothesData = [];
-  List<ClothesProduct> _likedClothesData = [];
-  List<ClothesProduct> _cartClothesData = [];
+  List<int> _likedClothesData = [];
+  List<int> _cartClothesData = [];
   //functions
   Future<void> getLoadClothesData() async {
     await Future.delayed(Duration(seconds: 5)); //Reallife delay
@@ -19,6 +23,9 @@ class ClothesService {
     _clothesData = List.from(productsData)
         .map<ClothesProduct>((clothes) => ClothesProduct.fromMap(clothes))
         .toList();
+
+    _likedClothesData = _hiveUtil.getLikePrductList();
+    _cartClothesData = _hiveUtil.getCartPrductList();
   }
 
   ClothesProduct getProductAtIndex(int index) {
@@ -38,24 +45,31 @@ class ClothesService {
     return _likedClothesData.length;
   }
 
-  void likebutton(int productID) {
+  bool isLikedAtProductId(int productID) {
+    return _likedClothesData.contains(productID);
+  }
+
+  void likebuttonAtProductID(int productID) {
+    // int productIndex =
+    //     _clothesData.indexWhere((element) => element.productID == productID);
+
+    // _clothesData[productIndex].isLiked = !_clothesData[productIndex].isLiked;
     int productIndex =
         _clothesData.indexWhere((element) => element.productID == productID);
-    _clothesData[productIndex].isLiked = !_clothesData[productIndex].isLiked;
-    if (_clothesData[productIndex].isLiked == false) {
+    if (isLikedAtProductId(productID) == true) {
       _likedClothesData
-          .removeWhere((element) => element.productID == productID);
+          .removeWhere((listproductID) => listproductID == productID);
+
+      _hiveUtil.likeProductHandle(productID: productID, index: productIndex);
     } else {
-      _likedClothesData.add(_clothesData[productIndex]);
+      _likedClothesData.add(productID);
+      _hiveUtil.likeProductHandle(productID: productID, index: productIndex);
     }
   }
 
   ClothesProduct getLikedProductAtIndex(int index) {
-    return _likedClothesData[index];
-  }
-
-  void removeLikedProduct(int index) {
-    likebutton(_likedClothesData[index].productID);
+    return _clothesData
+        .firstWhere((element) => element.productID == _likedClothesData[index]);
   }
 
   //cart product functionality
@@ -63,33 +77,40 @@ class ClothesService {
     return _cartClothesData.length;
   }
 
-  void addToCartButton(int productID) {
+  void addToCartButtonAtProductID(int productID) {
     int productIndex =
         _clothesData.indexWhere((element) => element.productID == productID);
-    if (_cartClothesData.contains(_clothesData[productIndex])) {
-      _cartClothesData.removeWhere((element) => element.productID == productID);
+    if (checkInCart(productID)) {
+      _cartClothesData.removeWhere((element) => element == productID);
+      _hiveUtil.cartProductHandle(productID: productID, index: productIndex);
     } else {
-      _cartClothesData.add(_clothesData[productIndex]);
+      _cartClothesData.add(productID);
+      _hiveUtil.cartProductHandle(productID: productID, index: productIndex);
     }
   }
 
   bool checkInCart(int productID) {
-    int productIndex =
-        _clothesData.indexWhere((element) => element.productID == productID);
-    return _cartClothesData.contains(_clothesData[productIndex]);
+    return _cartClothesData.contains(productID);
   }
 
   ClothesProduct getCartProductAtIndex(int index) {
-    return _cartClothesData[index];
+    return _clothesData
+        .firstWhere((element) => element.productID == _cartClothesData[index]);
   }
 
-  void removeFromCart(int index) {
-    addToCartButton(_cartClothesData[index].productID);
+  void removeFromCartAtIndex(int index) {
+    addToCartButtonAtProductID(_clothesData
+        .firstWhere((element) => element.productID == _cartClothesData[index])
+        .productID);
   }
 
 //cost
   int subtotal() {
-    return _cartClothesData.fold<int>(
-        0, (previousValue, product) => product.price + previousValue);
+    return _cartClothesData.fold<int>(0, (previousValue, productId) {
+      return _clothesData
+              .firstWhere((element) => element.productID == productId)
+              .price +
+          previousValue;
+    });
   }
 }

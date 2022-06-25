@@ -73,7 +73,7 @@ class CartPage extends StatelessWidget {
                                         children: [
                                           Hero(
                                             tag: model
-                                                .productAtIndex(index)
+                                                .getCartProductAtIndex(index)
                                                 .productID,
                                             child: Container(
                                               height: 100,
@@ -112,7 +112,8 @@ class CartPage extends StatelessWidget {
                                                 child: Icon(Icons.delete,
                                                     color: Colors.red[400]),
                                                 onTap: () {
-                                                  model.removeFromCart(index);
+                                                  model.removeFromCartAtIndex(
+                                                      index);
                                                 },
                                               )
                                             ],

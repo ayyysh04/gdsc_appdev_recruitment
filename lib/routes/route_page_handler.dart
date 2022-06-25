@@ -51,23 +51,3 @@ PageRouteBuilder bottomSlidePageBuilder({
     },
   );
 }
-
-PageRouteBuilder rightSlidePageBuilder({
-  required Widget screen,
-}) {
-  return PageRouteBuilder(
-    pageBuilder: (c, a1, a2) => screen,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(-1.0, 0.0);
-      const end = Offset(0.0, 0.0);
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-      return SlideTransition(
-        textDirection: TextDirection.rtl,
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
-}

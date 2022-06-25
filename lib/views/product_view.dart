@@ -58,10 +58,11 @@ class ProductView extends StatelessWidget {
                       builder: (context, model, _) {
                         return LikeButton(
                             onPressed: () {
-                              model.likebutton(
+                              model.likebuttonAtProductID(
                                   model.productAtIndex(index).productID);
                             },
-                            isLiked: model.productAtIndex(index).isLiked);
+                            isLiked: model.isLikedAtProductId(
+                                model.productAtIndex(index).productID));
                       })
                 ],
               ),
@@ -85,7 +86,7 @@ class ProductView extends StatelessWidget {
                         builder: (context, model, _) {
                           return TextButton(
                             onPressed: () {
-                              model.addToCartbutton(
+                              model.addToCartButtonAtProductID(
                                   model.productAtIndex(index).productID);
                             },
                             child: Container(

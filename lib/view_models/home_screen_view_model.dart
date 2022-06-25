@@ -38,8 +38,8 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
 
   int get totalProducts => _clothesService.totalProducts;
 //like functionlity
-  void likebutton(int productID) {
-    _clothesService.likebutton(productID);
+  void likebuttonAtProductID(int productID) {
+    _clothesService.likebuttonAtProductID(productID);
     setState(ViewState.idle);
   }
 
@@ -49,14 +49,13 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
     return _clothesService.getLikedProductAtIndex(index);
   }
 
-  void removeLike(int index) {
-    _clothesService.removeLikedProduct(index);
-    setState(ViewState.idle);
+  bool isLikedAtProductId(int productID) {
+    return _clothesService.isLikedAtProductId(productID);
   }
 
 //cart functionlity
-  void addToCartbutton(int productID) {
-    _clothesService.addToCartButton(productID);
+  void addToCartButtonAtProductID(int productID) {
+    _clothesService.addToCartButtonAtProductID(productID);
     setState(ViewState.idle);
   }
 
@@ -70,8 +69,8 @@ class HomeScreenViewModel extends IndexTrackingModel implements Disposable {
     return _clothesService.getCartProductAtIndex(index);
   }
 
-  void removeFromCart(int index) {
-    _clothesService.removeFromCart(index);
+  void removeFromCartAtIndex(int index) {
+    _clothesService.removeFromCartAtIndex(index);
     setState(ViewState.idle);
   }
 

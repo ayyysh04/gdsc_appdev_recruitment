@@ -6,8 +6,6 @@ class IndexTrackingModel extends BaseModel {
 
   bool _reverse = false;
 
-  /// Indicates whether we're going forward or backward in terms of the index we're changing.
-  /// This is very helpful for the page transition directions.
   bool get reverse => _reverse;
 
   void setIndex(int value) {

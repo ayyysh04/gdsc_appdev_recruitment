@@ -75,7 +75,7 @@ class FavPage extends StatelessWidget {
                                           children: [
                                             Hero(
                                               tag: model
-                                                  .productAtIndex(index)
+                                                  .getLikedProductAtIndex(index)
                                                   .productID,
                                               child: Container(
                                                 height: 100,
@@ -116,7 +116,11 @@ class FavPage extends StatelessWidget {
                                                   child: Icon(Icons.delete,
                                                       color: Colors.red[400]),
                                                   onTap: () {
-                                                    model.removeLike(index);
+                                                    model.likebuttonAtProductID(
+                                                        model
+                                                            .productAtIndex(
+                                                                index)
+                                                            .productID);
                                                   },
                                                 )
                                               ],

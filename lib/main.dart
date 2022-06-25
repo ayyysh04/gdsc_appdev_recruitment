@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:gdsc_appdev/services/hive.dart';
 import 'package:gdsc_appdev/services/locator.dart';
 import 'package:gdsc_appdev/services/navigation_service.dart';
 import 'package:gdsc_appdev/services/shared_prefs.dart';
@@ -15,6 +16,7 @@ Future<void> main() async {
   setupLocator();
   //storage services init
   await locator.get<SharedPrefs>().init();
+  await locator.get<HiveUtil>().init();
   runApp(MyApp());
 }
 

@@ -133,13 +133,14 @@ class ShopPage extends StatelessWidget {
                                         right: 5,
                                         child: LikeButton(
                                           onPressed: () {
-                                            model.likebutton(model
+                                            model.likebuttonAtProductID(model
                                                 .productAtIndex(index)
                                                 .productID);
                                           },
-                                          isLiked: model
-                                              .productAtIndex(index)
-                                              .isLiked,
+                                          isLiked: model.isLikedAtProductId(
+                                              model
+                                                  .productAtIndex(index)
+                                                  .productID),
                                         )),
                                   ],
                                 ),

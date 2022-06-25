@@ -5,7 +5,6 @@ class ClothesProduct {
   final String name;
   final String productURL;
   final int price;
-  bool isLiked = false;
   ClothesProduct({
     required this.productID,
     required this.name,

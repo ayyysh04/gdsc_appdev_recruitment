@@ -1,4 +1,5 @@
 import 'package:gdsc_appdev/services/clothes_service.dart';
+import 'package:gdsc_appdev/services/hive.dart';
 import 'package:gdsc_appdev/services/navigation_service.dart';
 import 'package:gdsc_appdev/services/shared_prefs.dart';
 import 'package:gdsc_appdev/view_models/home_screen_view_model.dart';
@@ -10,6 +11,8 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
   // storage servics
   locator.registerLazySingleton(() => SharedPrefs());
+  locator.registerLazySingleton(() => HiveUtil());
+
   //navigation services
   locator.registerLazySingleton(() => NavigationService());
 
